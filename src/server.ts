@@ -1,9 +1,12 @@
 import express from 'express';
+import path from 'path';
+
+import routes from './routes';
 
 const app = express();
+app.use(express.json());
+app.use(routes);
 
-app.get('/', (req, res) => {
-    res.send("Boa");
-})
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
 
 app.listen(3333);
